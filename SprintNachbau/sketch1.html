@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="libraries/p5.min.js"></script>
+  <!-- <script src="sketch.js"></script> -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <script>
+    let values = []
+    function setup() {
+      createCanvas(400, 400);
+      frameRate(5)
+      colorMode(HSB, 10, 100, 100, 1)
+      
+
+
+      for (let i = 0; i < 10; i++) {
+        let val = map(i, 0, 9, 0, TWO_PI)
+        let n = noise(val)
+        values.push(n)
+      }
+      console.log(values)
+
+    } 
+
+    function draw() {
+      background(0, 0, 0);
+      let index = 0
+      // for (let x = 0; x < width; x += random(30, 60)) {
+      // for (let x = 0; x < width; x += 40) {
+      //   for (let y = 0; y < height; y += 40) {
+     for (let x = width - 40; x >= -60 ; x -= 40) {
+  for (let y = height; y >= 0 ; y -= 40) {
+          // let rectWidth = map(mouseX, 0, width, 30, 60);
+          let rand_index = round(random(index))
+          let rand_noise = values[rand_index]
+          let rectWidth = map(rand_noise, 0, 1, 100, 40)
+          let noise_value = values[index]
+          let r = map(x + (y * (noise_value * 2.64626)), 0, width, 0, 10) % 10;
+          let g = 255 - r; // Invert the green channel based on the red value
+          let b = map(x, 0, width, 255, 0); // Map the blue channel from 255 to 0 based on the x-coordinate
+
+          // if (mouseX >= x && mouseX <= x + rectWidth && mouseY >= y && mouseY <= y + 40) {
+          //   x += random(-movementSpeed, movementSpeed); // Move the rectangle horizontally within a range when the mouse hovers
+          //   y += random(-movementSpeed, movementSpeed); // Move the rectangle vertically within a range when the mouse hovers
+          // }
+          // console.log(values[index])
+          fill(r, 100, 100);
+          noStroke()
+
+
+          rect(x, y, rectWidth, 40);
+        }
+        index++
+        if (index >= 10) {
+          index = 0
+        }
+      }
+    }
+
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+body {
+    cursor: none; /* Hide default cursor */
+  }
+  
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px; /* Width of your custom cursor image */
+    height: 100px; /* Height of your custom cursor image */
+    background-image: url('Images/mouse.png'); /* Path to your custom cursor image */
+    background-size: cover;
+    pointer-events: none; /* Ensure the cursor does not interfere with elements */
+    z-index: 9999; /* Ensure the cursor is on top of other elements */
+  }
+  
